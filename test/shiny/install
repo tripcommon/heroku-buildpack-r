@@ -21,10 +21,10 @@ git push heroku master
 sleep 20
 
 # check...
-heroku logs --app $app
+heroku logs --tail --app $app
 
 # popd
 
-# # clean up
-# heroku apps:destroy $app --confirm $app
-# rm -rf $dir
+# clean up
+heroku apps:destroy $app --confirm $app
+rm -rf $dir
