@@ -65,7 +65,6 @@ VENDOR_DIR="$BUILD_DIR/vendor"
 CRAN_MIRROR="http://cran.revolutionanalytics.com"
 
 echo "Creating cache dir: $CACHE_DIR"
-pwd
 mkdir -p $CACHE_DIR
 
 # vendor R into the slug
@@ -108,10 +107,8 @@ mkdir -p /app/vendor/R/lib64/R/doc/html
 touch /app/vendor/R/lib64/R/doc/html/R.css
 
 echo "Restoring artifacts from cache"
-pwd
-
-# Restore old artifacts from cache
-cp -R $CACHE_DIR/* /app/vendor/R/
+# Restore old artifacts from cache if existing
+cp -R $CACHE_DIR/* /app/vendor/R/ &> /dev/null || true
 
 # install dependencies from CRAN
 echo "Executing init.r script" | indent
